@@ -5,25 +5,25 @@
 .DarkMain {
   background-color: rgb(68, 66, 67);
   color: whitesmoke;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .DarkMinor {
   background-color: rgb(128, 128, 134);
   color: whitesmoke;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .LightMain {
   background-color: rgb(235, 235, 235);
   color: black;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .LightMinor {
   background-color: whitesmoke;
   color: black;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 /* NAVBAR Section */
@@ -310,6 +310,17 @@
 @media only screen and (max-width: 400px) {
   * {
     font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .Form-container {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10%;
   }
 
   .Form-select-container {
