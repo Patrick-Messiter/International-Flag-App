@@ -7,4 +7,9 @@ function formatPopulation(num) {
     return stringNumber
 }
 
+function randomCountry(array) {
+    return array[Math.floor(Math.random() * array.length - 1)]
+}
+
 export {formatPopulation}
+export {randomCountry}

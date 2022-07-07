@@ -3,12 +3,14 @@ import './App.css';
 import {Navbar} from './Navbar';
 import {Main} from './Main'
 import {Section} from './Section'
+import { QuizSection } from './QuizSection';
 
 function App() {
 
   const [countryData, setCountryData] = React.useState(null)
   const [chooseCountry, setChooseCountry] = React.useState()
   const [toggleSection, setToggleSection] = React.useState(false)
+  const [toggleQuizSection, setToggleQuizSection] = React.useState(false)
   const [toggleDarkMode, setToggleDarkMode] = React.useState(false)
     
 
@@ -41,12 +43,14 @@ function App() {
           toggleSection = {toggleSection}
           setToggleSection = {setToggleSection}
           toggleDarkMode = {toggleDarkMode}
+          toggleQuizSection = {toggleQuizSection}
+          setToggleQuizSection = {setToggleQuizSection}
         />
       )
     }
   }
 
-  // Render Specific Country function when Card has been clicked
+  // Render Specific Country Section function when Card has been clicked
 
   function renderSectionComponent () {
     return (
@@ -61,13 +65,38 @@ function App() {
     )
   }
 
+  // Render Quiz Section when its button has been clicked
+
+  function renderQuizSectionComponent () {
+    return (
+      <QuizSection
+        item = {countryData}
+        toggleQuizSection = {toggleQuizSection}
+        setToggleQuizSection = {setToggleQuizSection}
+      />
+    )
+  }
+
+  // Determine what needs to be rendered to the screen using state toggle logic
+
+  function sectionRender () {
+    if (!toggleSection && !toggleQuizSection) {
+      return renderMainComponent()
+    } else if (toggleSection && !toggleQuizSection) {
+      return renderSectionComponent()
+    } else if (!toggleSection && toggleQuizSection) {
+      return renderQuizSectionComponent()
+    }
+  }
+
+
   return (
     <div className="App">
       <Navbar
         toggleDarkMode = {toggleDarkMode}
         setToggleDarkMode = {setToggleDarkMode}
        />
-      {toggleSection ? renderSectionComponent() : renderMainComponent()}
+      {sectionRender()}
     </div>
   );
 }

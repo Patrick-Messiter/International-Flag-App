@@ -10,6 +10,12 @@ function Main (props) {
         countryName: "",
         regionName: ""
     })
+
+    // Function to alter state to change component/section to the quiz section
+
+    function renderQuizSection () {
+        return props.setToggleQuizSection(true)
+    }
  
     // Update chooseCountry state and toggle state on click event handler of each card for the Section component
     
@@ -21,8 +27,6 @@ function Main (props) {
             }
         })
     } 
-
-    console.log(formData.countryName)
 
     // Render API to Card once API has been fetched dependent upon search conditions
 
@@ -83,6 +87,7 @@ function Main (props) {
     return (
         <main className= {props.toggleDarkMode ? "DarkMain Main-home-section" : "LightMain Main-home-section"}>
             <div className='Home-outer-container'>
+                <button onClick= {renderQuizSection}>Quiz Section!</button>
                 <div className='Home-form-container'>
                     <Form 
                         formData = {formData}
