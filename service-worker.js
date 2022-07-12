@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/International-Flag-App/precache-manifest.43adb8eaf6da61480fb39a93c30b894e.js"
+  "/International-Flag-App/precache-manifest.aa5468d1a4831ea61c7c50a4bf81012b.js"
 );
 
 workbox.clientsClaim();
