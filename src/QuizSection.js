@@ -8,11 +8,12 @@ function QuizSection (props) {
 
     const [countryOne, setCountryOne] = React.useState(randomCountry(props.item))
     const [countryTwo, setCountryTwo] = React.useState(randomCountry(props.item))
+    const [score, setScore] = React.useState(0)
+    const [questionsAsked, setQuestionsAsked] = React.useState(0)
 
-    console.log(countryOne)
 
-    console.log(countryTwo)
-
+    console.log(score)
+    console.log(questionsAsked)
     // function to return to Main Component
 
     function returnToMain () {
@@ -27,22 +28,25 @@ function QuizSection (props) {
             <Card
                 key = {currentCountry.name.common}
                 item = {currentCountry}
+                toggleQuizSection = {props.toggleQuizSection}
             />
         )
     })
-
-
 
     return (
         <section>
             <div className='QuizSection-inner'>
                 <h1>This is the Quiz Section</h1>
                 <button onClick={returnToMain}>Back</button>
+                <p>Score: {score}/{questionsAsked}</p>
                 {renderCountries}
                 <CapitalCityQuestion
                     countryOne = {countryOne}
                     countryTwo = {countryTwo}
                     item = {props.item}
+                    score = {score}
+                    setScore = {setScore}
+                    setQuestionsAsked = {setQuestionsAsked}
                 />
             </div>
         </section>

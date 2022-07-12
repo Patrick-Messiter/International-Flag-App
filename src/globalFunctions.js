@@ -8,7 +8,7 @@ function formatPopulation(num) {
 }
 
 function randomCountry(array) {
-    return array[Math.floor(Math.random() * array.length - 1)]
+    return array[Math.floor(Math.random() * array.length)]
 }
 
 export {formatPopulation}

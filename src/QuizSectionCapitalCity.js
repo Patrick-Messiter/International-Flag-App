@@ -6,60 +6,73 @@ function CapitalCityQuestion (props) {
     const [wrongCountryOne, setWrongCountryOne] = React.useState(randomCountry(props.item))
     const [wrongCountryTwo, setWrongCountryTwo] = React.useState(randomCountry(props.item))
     const [userSelection, setUserSelection] = React.useState()
+    const [chosenArray,setChosenArray] = React.useState()
 
     // A mapping feature to map two incorrect button answers with the two correct answers
 
-    let allCountriesArray = [props.countryOne, props.countryTwo, wrongCountryOne, wrongCountryTwo]
+    let allCountriesArrayOne = [props.countryOne, props.countryTwo, wrongCountryOne, wrongCountryTwo]
+    let allCountriesArrayTwo = [wrongCountryOne, props.countryOne, wrongCountryTwo, props.countryTwo]
+    let allCountriesArrayThree = [wrongCountryTwo, wrongCountryOne, props.countryTwo, props.countryOne]
+    let randomCountriesArray = [allCountriesArrayOne, allCountriesArrayTwo, allCountriesArrayThree]
+
+    console.log(chosenArray)
+    console.log(userSelection)
 
     function randomisedArray() {
-        let randomCountriesArray = []
-        if (randomCountriesArray.length <=4) {
-            randomCountriesArray.push(randomCountry(allCountriesArray))
-            /*
-            if (!randomCountriesArray.includes(props.countryOne)) {
-                randomCountriesArray.push(props.countryOne)
-            }*/
-        }
-        return randomCountriesArray
+        setChosenArray(randomCountry(randomCountriesArray))
     }
 
-    //IMPORTANT THINGS TO WORK ON NEXT TIME, RANDOMISING COUNTRIES ARRAY AND ALTERING QUESTION TO NOT INCLUDE CAPITAL CITY OR ALTER CARD
+    //A useEffect statement to prevent infinite calling of a randomised array
 
-    console.log(randomisedArray())
+    React.useEffect(() => {
+        randomisedArray()   
+    }, [])
 
-    let randomCountriesArray = Math.floor(Math.random() * allCountriesArray.length -1)
-
-    // A mapping feature to map two incorrect button answers with the two correct answers
-
-    const mapButtons = allCountriesArray.map(currentCountry => {
-        return (
-            <button onClick = {() => setUserSelection(currentCountry.capital)}>{currentCountry.capital}</button>
-        )
-    })
-
-    function checkAnswers () {
-        if (userSelection === props.countryOne.capital || userSelection === props.countryTwo.capital) {
-            return <h3>Congratulations you got it right!</h3>
-        } else {
-            return (
-            <h3>
-                Sorry you got it wrong! The correct answers were: {props.countryOne.capital} ({props.countryOne.name.common}) or {props.countryTwo.capital} ({props.countryTwo.name.common})
-            </h3>
-            )
+    function mapButtons () {
+        if (chosenArray) {
+            let mappedButtons = chosenArray.map(currentCountry => {
+                return <button onClick = {() => setUserSelection(currentCountry.capital)}>{currentCountry.capital}</button>
+            })
+            return mappedButtons
         }
     }
 
-    function answersComponent () {
+    // Logic for updating score/attempted questions and clarifying correct answer
+
+    function updateStates () {
         if (userSelection) {
-            return checkAnswers()
+            if (userSelection === props.countryOne.capital || userSelection === props.countryTwo.capital) {
+                props.setScore(prevScore => prevScore + 1)
+                props.setQuestionsAsked(prevScore => prevScore + 1)
+            } else {
+                props.setQuestionsAsked(prevScore => prevScore + 1)
+            }
+        }
+    }
+    React.useEffect(() => {
+        updateStates()
+    }, [userSelection])
+    
+    function checkAnswers () {
+        if (userSelection){
+            if (userSelection === props.countryOne.capital || userSelection === props.countryTwo.capital) {
+                return <h3>Congratulations you got it right!</h3>
+            }
+            else {
+                return (
+                <h3>
+                    Sorry you got it wrong! The correct answers were: {props.countryOne.capital} ({props.countryOne.name.common}) or {props.countryTwo.capital} ({props.countryTwo.name.common})
+                </h3>
+                )
+            }
         }
     }
     
     return (
         <div>
             <h2>Which of the below is the capital city of either {props.countryOne.name.common} or {props.countryTwo.name.common}</h2>
-            {mapButtons}
-            {answersComponent()}
+            {mapButtons()}
+            {checkAnswers()}
         </div>
     )
 }

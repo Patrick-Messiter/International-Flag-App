@@ -14,7 +14,7 @@ function Form (props) {
     return (
         <form className='Form-container'>
             <div className= {props.toggleDarkMode ? "DarkMinor Form-input-container" : "LightMinor Form-input-container"}>
-                <p><span>&#x1F50D;</span></p>
+                <p><span role="img" aria-label="Magnifying glass emoji">&#x1F50D;</span></p>
                 <input className={props.toggleDarkMode ? "DarkMinor Form-input" : "LightMinor Form-input"}
                     type="text"
                     placeholder='Search for a country'
