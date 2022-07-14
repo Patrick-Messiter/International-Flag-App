@@ -28,7 +28,11 @@ function Card (props) {
             <img src={props.item.flags.png} alt={`${props.item.name.common} flag`}/>
             <div className='Card-container-inner'>
                 <h3>{props.item.name.common}</h3>
-                {conditionalList()}
+                <ul>
+                    <li><span>Population:</span> {formatPopulation(props.item.population)}</li>
+                    <li><span>Region:</span> {props.item.region}</li>
+                    <li><span>Capital:</span> {props.item.capital}</li>
+                </ul>
             </div>
         </div>
     )

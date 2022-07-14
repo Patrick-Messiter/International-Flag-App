@@ -70,7 +70,7 @@ function CapitalCityQuestion (props) {
     
     return (
         <div>
-            <h2>Which of the below is the capital city of either {props.countryOne.name.common} or {props.countryTwo.name.common}</h2>
+            <h2>Which of the below is the capital city of either {props.countryOne.name.common} or {props.countryTwo.name.common}?</h2>
             {mapButtons()}
             {checkAnswers()}
         </div>

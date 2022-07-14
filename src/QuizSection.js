@@ -3,17 +3,19 @@ import {Card} from './Card'
 import {randomCountry} from './globalFunctions'
 
 import {CapitalCityQuestion} from './QuizSectionCapitalCity'
+import {PopulationQuestion} from './QuizSectionPopulation'
+import {RegionQuestion} from './QuizSectionRegion'
 
 function QuizSection (props) {
 
-    const [countryOne, setCountryOne] = React.useState(randomCountry(props.item))
-    const [countryTwo, setCountryTwo] = React.useState(randomCountry(props.item))
+    const [countryOne, setCountryOne] = React.useState((props.item[Math.floor(Math.random() * 250)]))
+    const [countryTwo, setCountryTwo] = React.useState((props.item[Math.floor(Math.random() * 250)]))
     const [score, setScore] = React.useState(0)
     const [questionsAsked, setQuestionsAsked] = React.useState(0)
 
+    console.log(countryOne)
+    console.log(countryTwo)
 
-    console.log(score)
-    console.log(questionsAsked)
     // function to return to Main Component
 
     function returnToMain () {
@@ -21,7 +23,7 @@ function QuizSection (props) {
     }
 
     // Rendering country cards to Quiz Section Component
-
+    
     let cardsArray = [countryOne, countryTwo]
     const renderCountries = cardsArray.map(currentCountry => {
         return (
@@ -33,13 +35,12 @@ function QuizSection (props) {
         )
     })
 
-    return (
-        <section>
-            <div className='QuizSection-inner'>
-                <h1>This is the Quiz Section</h1>
-                <button onClick={returnToMain}>Back</button>
-                <p>Score: {score}/{questionsAsked}</p>
-                {renderCountries}
+    // Randomise between the three Quiz Component Questions
+
+    function randomiseQuestion () {
+        let num = Math.floor(Math.random() * 3)
+        if (num === 0) {
+            return (
                 <CapitalCityQuestion
                     countryOne = {countryOne}
                     countryTwo = {countryTwo}
@@ -48,6 +49,54 @@ function QuizSection (props) {
                     setScore = {setScore}
                     setQuestionsAsked = {setQuestionsAsked}
                 />
+            )
+        }
+        if (num === 1) {
+            return (
+                <PopulationQuestion
+                    countryOne = {countryOne}
+                    countryTwo = {countryTwo}
+                    item = {props.item}
+                    score = {score}
+                    setScore = {setScore}
+                    setQuestionsAsked = {setQuestionsAsked}
+                />
+            )
+        }
+        if (num === 2) {
+            return (
+                <RegionQuestion
+                    countryOne = {countryOne}
+                    countryTwo = {countryTwo}
+                    setCountryOne = {setCountryOne}
+                    setCountryTwo = {setCountryTwo}
+                    item = {props.item}
+                    score = {score}
+                    setScore = {setScore}
+                    setQuestionsAsked = {setQuestionsAsked}
+                />
+            )
+        }
+    }
+    
+    //Update states and question after each question is answered
+
+    React.useEffect(() => {
+        if (questionsAsked) {
+            setCountryOne(randomCountry(props.item))
+            setCountryTwo(randomCountry(props.item))
+            randomiseQuestion()
+        }
+    }, [questionsAsked])
+
+    return (
+        <section>
+            <div className='QuizSection-inner'>
+                <h1>This is the Quiz Section</h1>
+                <button onClick={returnToMain}>Back</button>
+                <p>Score: {score}/{questionsAsked}</p>
+                {renderCountries}
+                {randomiseQuestion()}
             </div>
         </section>
     )
