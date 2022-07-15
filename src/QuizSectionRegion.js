@@ -9,31 +9,34 @@ function RegionQuestion(props) {
 
     function findCorrectAnswer () {
         if (props.countryOne.region === props.countryTwo.region) {
-            setCorrectSelection(props.countryOne.region)
+            setCorrectSelection("Yes")
         }
         else {
-            setCorrectSelection(props.countryTwo.name.common)
+            setCorrectSelection("No")
         }
     }
+
+
+    // Function to save results for final comparison (Ran in compareAnswers function to allow it to only occur on change of userSelection state)
+
+    function setSavedResults () {
+        props.setSavedResults(prev => [...prev, {user: userSelection, correct: correctSelection, country1: props.countryOne.name.common, country2: props.countryTwo.name.common}])
+    } 
 
     function compareAnswers () {
         if (userSelection) {
             if (userSelection === correctSelection) {
                 props.setScore(prevScore => prevScore + 1)
-                console.log("option 1")
                 props.setQuestionsAsked(prevScore => prevScore + 1)
-            }
-            else if (userSelection === props.countryTwo.name.common && correctSelection === "not the same") {
-                props.setScore(prevScore => prevScore + 1)
-                console.log("option 2")
-                props.setQuestionsAsked(prevScore => prevScore + 1)
+                setSavedResults()
             }
             else {
                 props.setQuestionsAsked(prevScore => prevScore + 1)
-                console.log("option 3")
+                setSavedResults()
             }
         }
     }
+
 
     //Compare answer ran and then both states are cleaned prior to next question
 
@@ -51,9 +54,9 @@ function RegionQuestion(props) {
     return (
         <div>
             <h2>Are these countries from the same region/continent?</h2>
-            <h3>{props.countryOne.name.common} {props.countryOne.region} and {props.countryTwo.name.common} {props.countryTwo.region}</h3>
-            <button onClick={() => {setUserSelection(props.countryOne.region); findCorrectAnswer()}}>Yes</button>
-            <button onClick={() => {setUserSelection(props.countryTwo.name.common); findCorrectAnswer()}}>No</button>
+            <h3>{props.countryOne.name.common} and {props.countryTwo.name.common}</h3>
+            <button onClick={() => {setUserSelection("Yes"); findCorrectAnswer()}}>Yes</button>
+            <button onClick={() => {setUserSelection("No"); findCorrectAnswer()}}>No</button>
         </div>
     )
 }

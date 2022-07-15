@@ -73,6 +73,7 @@ function App() {
         item = {countryData}
         toggleQuizSection = {toggleQuizSection}
         setToggleQuizSection = {setToggleQuizSection}
+        toggleDarkMode = {toggleDarkMode}
       />
     )
   }

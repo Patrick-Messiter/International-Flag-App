@@ -12,9 +12,11 @@ function QuizSection (props) {
     const [countryTwo, setCountryTwo] = React.useState((props.item[Math.floor(Math.random() * 250)]))
     const [score, setScore] = React.useState(0)
     const [questionsAsked, setQuestionsAsked] = React.useState(0)
+    const [savedResults, setSavedResults] = React.useState([])
 
     console.log(countryOne)
     console.log(countryTwo)
+    console.log(savedResults)
 
     // function to return to Main Component
 
@@ -31,6 +33,7 @@ function QuizSection (props) {
                 key = {currentCountry.name.common}
                 item = {currentCountry}
                 toggleQuizSection = {props.toggleQuizSection}
+                toggleDarkMode = {props.toggleDarkMode}
             />
         )
     })
@@ -48,6 +51,7 @@ function QuizSection (props) {
                     score = {score}
                     setScore = {setScore}
                     setQuestionsAsked = {setQuestionsAsked}
+                    setSavedResults = {setSavedResults}
                 />
             )
         }
@@ -60,6 +64,7 @@ function QuizSection (props) {
                     score = {score}
                     setScore = {setScore}
                     setQuestionsAsked = {setQuestionsAsked}
+                    setSavedResults = {setSavedResults}
                 />
             )
         }
@@ -74,9 +79,33 @@ function QuizSection (props) {
                     score = {score}
                     setScore = {setScore}
                     setQuestionsAsked = {setQuestionsAsked}
+                    setSavedResults = {setSavedResults}
                 />
             )
         }
+    }
+
+    //Quiz Section Main Components 
+    function QuizMain () {
+        return (
+            <div className= {props.toggleDarkMode ? "DarkMain QuizSection-inner" : "LightMain QuizSection-inner"}>
+                <h1>This is the Quiz Section</h1>
+                <button onClick={returnToMain}>Back</button>
+                <p>Score: {score}/{questionsAsked}</p>
+                {renderCountries}
+                {randomiseQuestion()}
+            </div>
+        )
+    }
+
+    function QuizFinish () {
+        return (
+            <div className= {props.toggleDarkMode ? "DarkMain QuizSection-inner" : "LightMain QuizSection-inner"}>
+                <h1>Thanks for playing the Quiz</h1>
+                <h2>Your score was {score}/{questionsAsked}</h2>
+                <button onClick={returnToMain}>Back</button>
+            </div>
+        )
     }
     
     //Update states and question after each question is answered
@@ -91,13 +120,7 @@ function QuizSection (props) {
 
     return (
         <section>
-            <div className='QuizSection-inner'>
-                <h1>This is the Quiz Section</h1>
-                <button onClick={returnToMain}>Back</button>
-                <p>Score: {score}/{questionsAsked}</p>
-                {renderCountries}
-                {randomiseQuestion()}
-            </div>
+            {questionsAsked < 10 ? <QuizMain/> : <QuizFinish/>}
         </section>
     )
 }
