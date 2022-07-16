@@ -20,7 +20,8 @@ function RegionQuestion(props) {
     // Function to save results for final comparison (Ran in compareAnswers function to allow it to only occur on change of userSelection state)
 
     function setSavedResults () {
-        props.setSavedResults(prev => [...prev, {user: userSelection, correct: correctSelection, country1: props.countryOne.name.common, country2: props.countryTwo.name.common}])
+        props.setSavedResults(prev => [...prev, {user: userSelection, correct: correctSelection,
+            country1: props.countryOne.name.common, country2: props.countryTwo.name.common, question: "Region", score: props.score}])
     } 
 
     function compareAnswers () {

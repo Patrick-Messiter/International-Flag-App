@@ -15,9 +15,6 @@ function CapitalCityQuestion (props) {
     let allCountriesArrayThree = [wrongCountryTwo, wrongCountryOne, props.countryTwo, props.countryOne]
     let randomCountriesArray = [allCountriesArrayOne, allCountriesArrayTwo, allCountriesArrayThree]
 
-    console.log(chosenArray)
-    console.log(userSelection)
-
     function randomisedArray() {
         setChosenArray(randomCountry(randomCountriesArray))
     }
@@ -37,14 +34,22 @@ function CapitalCityQuestion (props) {
         }
     }
 
+    function setSavedResults () {
+        props.setSavedResults(prev => [...prev, {user: userSelection[0],
+            correct: `${props.countryOne.capital} (${props.countryOne.name.common}) or ${props.countryTwo.capital} (${props.countryTwo.name.common})`, 
+            country1: props.countryOne.capital, country2: props.countryTwo.capital, question: "Capital City"}])
+    } 
+
     // Logic for updating score/attempted questions and clarifying correct answer
 
     function updateStates () {
         if (userSelection) {
             if (userSelection === props.countryOne.capital || userSelection === props.countryTwo.capital) {
                 props.setScore(prevScore => prevScore + 1)
+                setSavedResults()
                 props.setQuestionsAsked(prevScore => prevScore + 1)
             } else {
+                setSavedResults()
                 props.setQuestionsAsked(prevScore => prevScore + 1)
             }
         }

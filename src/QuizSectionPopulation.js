@@ -14,14 +14,22 @@ function PopulationQuestion (props) {
         }
     }
 
+    function setSavedResults () {
+        props.setSavedResults(prev => [...prev, {user: userSelection, correct: correctSelection,
+            country1: props.countryOne.name.common, country2: props.countryTwo.name.common, question: "Population"}])
+    } 
+
     function compareAndUpdateState() {
         if (userSelection) {
             if (userSelection === correctSelection) {
                 props.setScore(prevScore => prevScore + 1)
+                setSavedResults()
                 props.setQuestionsAsked(prevScore => prevScore + 1)
-            } else (
+            } 
+            else {
+                setSavedResults()
                 props.setQuestionsAsked(prevScore => prevScore + 1)
-            )
+            }
         }
     }
 
