@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import {Navbar} from './Navbar';
-import {Main} from './Main'
-import {Section} from './Section'
-import { QuizSection } from './QuizSection';
+import {Navbar} from './Components/Navbar';
+import {Main} from './Components/Main'
+import {Section} from './Components/Section'
+import {QuizSection} from './Components/Quiz_Components/QuizSection';
 
 function App() {
 

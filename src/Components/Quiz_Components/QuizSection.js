@@ -1,6 +1,6 @@
 import React from 'react'
-import {Card} from './Card'
-import {randomCountry} from './globalFunctions'
+import {Card} from '../Card'
+import {randomCountry} from '../../globalFunctions'
 
 import {CapitalCityQuestion} from './QuizSectionCapitalCity'
 import {PopulationQuestion} from './QuizSectionPopulation'
@@ -51,6 +51,7 @@ function QuizSection (props) {
                     setScore = {setScore}
                     setQuestionsAsked = {setQuestionsAsked}
                     setSavedResults = {setSavedResults}
+                    toggleDarkMode = {props.toggleDarkMode}
                 />
             )
         }
@@ -64,6 +65,7 @@ function QuizSection (props) {
                     setScore = {setScore}
                     setQuestionsAsked = {setQuestionsAsked}
                     setSavedResults = {setSavedResults}
+                    toggleDarkMode = {props.toggleDarkMode}
                 />
             )
         }
@@ -79,6 +81,7 @@ function QuizSection (props) {
                     setScore = {setScore}
                     setQuestionsAsked = {setQuestionsAsked}
                     setSavedResults = {setSavedResults}
+                    toggleDarkMode = {props.toggleDarkMode}
                 />
             )
         }
@@ -135,23 +138,34 @@ function QuizSection (props) {
     //Quiz Section Main Components 
     function QuizMain () {
         return (
-            <div className= {props.toggleDarkMode ? "DarkMain QuizSection-inner" : "LightMain QuizSection-inner"}>
-                <h1>This is the Quiz Section</h1>
-                <button onClick={returnToMain}>Back</button>
-                <p>Score: {score}/{questionsAsked}</p>
-                {renderCountries}
-                {randomiseQuestion()}
+            <div className= {props.toggleDarkMode ? "DarkMain Quiz-section-outer" : "LightMain Quiz-section-outer"}>
+                <div className='Quiz-section-inner-container'>
+                    <div className='Quiz-section-inner-top'>
+                        <h2>This is the Quiz Section</h2>
+                        <p>You will be asked 10 questions, relating to the following countries population size, region/continent and their capital city.</p>
+                        <h3>Score: {score}/{questionsAsked}</h3>
+                    </div>
+                    <div className='Quiz-section-inner-middle'>
+                        {renderCountries}
+                    </div>
+                    <div className='Quiz-section-inner-bottom'>
+                        {randomiseQuestion()}
+                        <button onClick={returnToMain} className='Back-button'>&#8592; Back</button>
+                    </div>
+                </div>
             </div>
         )
     }
 
     function QuizFinish () {
         return (
-            <div className= {props.toggleDarkMode ? "DarkMain QuizSection-inner" : "LightMain QuizSection-inner"}>
-                <h1>Thanks for playing the Quiz</h1>
-                <h2>Your score was {score}/{questionsAsked}</h2>
-                {results}
-                <button onClick={returnToMain}>Back</button>
+            <div className= {props.toggleDarkMode ? "DarkMain Quiz-section-outer" : "LightMain Quiz-section-outer"}>
+                <div className='Quiz-section-answer-container'>
+                    <h2>Thanks for playing the Quiz</h2>
+                    <h3>Your score was {score}/{questionsAsked}</h3>
+                    {results}
+                    <button onClick={returnToMain} className='Back-button'>&#8592; Back</button> 
+                </div>
             </div>
         )
     }

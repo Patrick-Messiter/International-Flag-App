@@ -1,5 +1,5 @@
 import React from 'react'
-import {formatPopulation} from './globalFunctions'
+import {formatPopulation} from '../globalFunctions'
 
 function Card (props) {
     

@@ -1,5 +1,5 @@
 import React from 'react'
-import {formatPopulation} from './globalFunctions'
+import {formatPopulation} from '../globalFunctions'
 
 function Section (props) {
 
@@ -65,7 +65,7 @@ function Section (props) {
     return (
         <section className= {props.toggleDarkMode ? "DarkMain Country-section-outer" : "LightMain Country-section-outer"}>
             <div className='Country-section'>
-                <button className='Country-section-button Back-button' onClick={backToMain}>&#8592; Back</button>
+                <button className='Country-section-button Back-button Country-section-button-media' onClick={backToMain}>&#8592; Back</button>
                 <div className='Country-section-container'>
                     <img src = {props.item.flags.svg} alt = {`${props.item.name.common} flag`}/>
                     <div className='Country-section-container-inner'>

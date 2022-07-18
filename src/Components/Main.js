@@ -87,7 +87,9 @@ function Main (props) {
     return (
         <main className= {props.toggleDarkMode ? "DarkMain Main-home-section" : "LightMain Main-home-section"}>
             <div className='Home-outer-container'>
-                <button className={props.toggleDarkMode ? "DarkMinor" : "LightMinor"} onClick= {renderQuizSection}>Quiz Section!</button>
+                <div className='Home-quiz-container'>
+                    <button className={props.toggleDarkMode ? "DarkMinor Quiz-button" : "LightMinor Quiz-button"} onClick= {renderQuizSection}>Quiz Section!</button>
+                </div>
                 <div className='Home-form-container'>
                     <Form 
                         formData = {formData}

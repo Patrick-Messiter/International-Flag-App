@@ -53,12 +53,13 @@ function RegionQuestion(props) {
     //Both the correct and user state are updated on the button click event handler
 
     return (
-        <div>
-            <h2>Are these countries from the same region/continent?</h2>
-            <h3>{props.countryOne.name.common} and {props.countryTwo.name.common}</h3>
-            <button onClick={() => {setUserSelection("Yes"); findCorrectAnswer()}}>Yes</button>
-            <button onClick={() => {setUserSelection("No"); findCorrectAnswer()}}>No</button>
-        </div>
+        <>
+            <h3>Are these countries from the same region/continent?</h3>
+            <div className='Quiz-buttons-container'>
+                <button onClick={() => {setUserSelection("Yes"); findCorrectAnswer()}} className={props.toggleDarkMode ? "DarkMinor" : "LightMinor"}>Yes</button>
+                <button onClick={() => {setUserSelection("No"); findCorrectAnswer()}} className={props.toggleDarkMode ? "DarkMinor" : "LightMinor"}>No</button>
+            </div>
+        </>
     )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {randomCountry} from './globalFunctions'
+import {randomCountry} from '../../globalFunctions'
 
 function CapitalCityQuestion (props) {
     
@@ -28,7 +28,13 @@ function CapitalCityQuestion (props) {
     function mapButtons () {
         if (chosenArray) {
             let mappedButtons = chosenArray.map(currentCountry => {
-                return <button onClick = {() => setUserSelection(currentCountry.capital)}>{currentCountry.capital}</button>
+                if (currentCountry.capital) {
+                    return (
+                        <button onClick = {() => setUserSelection(currentCountry.capital)} className={props.toggleDarkMode ? "DarkMinor" : "LightMinor"}>
+                            {currentCountry.capital}
+                        </button>
+                    )
+                } 
             })
             return mappedButtons
         }
@@ -74,11 +80,13 @@ function CapitalCityQuestion (props) {
     }
     
     return (
-        <div>
-            <h2>Which of the below is the capital city of either {props.countryOne.name.common} or {props.countryTwo.name.common}?</h2>
-            {mapButtons()}
+        <>
+            <h3>Which of the below is the capital city of either {props.countryOne.name.common} or {props.countryTwo.name.common}?</h3>
+            <div className='Quiz-buttons-container'>
+                {mapButtons()}
+            </div>
             {checkAnswers()}
-        </div>
+        </>
     )
 }
 

@@ -1,3 +1,5 @@
+/* GLOBAL */
+
 .App {
   font-size: 16px;
 }
@@ -23,6 +25,27 @@
 .LightMinor {
   background-color: whitesmoke;
   color: black;
+  transition: 0.2s;
+}
+
+button {
+  padding: 0.2rem 1rem;
+  border: 0.15rem groove rgba(0, 0, 0, 0.1);
+  border-radius: 0.1rem;
+}
+
+button:hover {
+  border: 0.15rem groove rgba(0, 0, 0, 0.4);
+}
+
+.Back-button {
+  border-radius: 0.3rem;
+  padding: 0.4rem 1.5rem;
+  font-weight: bold;
+}
+
+.Back-button:hover {
+  border: 0.15rem groove rgb(223, 41, 41);
   transition: 0.2s;
 }
 
@@ -60,6 +83,26 @@
   margin: 0 5%;
   display: flex;
   flex-direction: column;
+}
+
+
+.Home-quiz-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 8vh;
+}
+
+.Quiz-button {
+  width: fit-content;
+  border-radius: 0.3rem;
+  padding: 0.75rem;
+  font-weight: bold;
+}
+
+.Quiz-button:hover {
+  border: 0.15rem groove rgb(178, 222, 39);
 }
 
 .Home-form-container {
@@ -127,6 +170,10 @@
   width: 17rem;
 }
 
+.Card-container:hover {
+  box-shadow: 0px 6px 4px -3px rgb(178, 222, 39);
+}
+
 .Card-container img {
   width: 100%;
   height: 12rem;
@@ -165,22 +212,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
-}
-
-.Country-section-button {
-  padding: 0.2rem 1rem;
-  border: 0.15rem groove rgba(0, 0, 0, 0.1);
-  border-radius: 0.1rem;
-}
-
-.Country-section-button:hover {
-  border: 0.15rem groove rgba(0, 0, 0, 0.4);
-  color: black;
-}
-
-.Back-button {
-  border-radius: 0.3rem;
-  padding: 0.4rem 1.5rem;
 }
 
 .Country-section-container {
@@ -237,6 +268,71 @@
   margin-left: 0.3rem;
 }
 
+
+/*QUIZ SECTION */
+
+.Quiz-section-outer {
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5%;
+}
+
+.Quiz-section-outer h2, h3, p {
+  margin: 1rem 0;
+}
+
+.Quiz-section-inner-container {
+  display: grid;
+  width: 90%;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr;
+}
+
+.Quiz-section-inner-top {
+  display: flex;
+  grid-area: 1 / 1 / 1 / span 4;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Quiz-section-inner-middle {
+  display: flex;
+  grid-area: 2 / 2 / span 1 / span 2;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Quiz-section-inner-bottom {
+  display: flex;
+  grid-area: 3 / 2 / span 1 / span 2;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15%;
+}
+
+.Quiz-buttons-container {
+  display: flex;
+  width: 80%;
+  height: 20%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Quiz-section-answer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+
+.Quiz-section-answer-container h4 {
+  margin: 0.2rem 0;
+}
+
+
 /*MEIDA QUERIES SECTION */
 
 @media only screen and (min-width: 1675px) {
@@ -270,14 +366,47 @@
     width: 100%;
   }
 
-  .Back-button {
+  .Country-section-button-media {
     margin: 5% 0;
+  } 
+
+  .Quiz-section-inner-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    row-gap: 1rem;
   }
+
+  .Quiz-section-inner-container h2, h3, p {
+    margin: 0.5rem 0;
+  }
+
+  .Quiz-section-inner-top {
+    text-align: center;
+  }
+  
+  .Quiz-section-inner-middle {
+    grid-area: 2 / 1 / span 1 / span 2;
+    justify-content: space-evenly;
+  }
+
+  .Quiz-section-inner-bottom {
+    grid-area: 3 / 1 / span 1 / span 2;
+    text-align: center;
+  }
+
+  .Quiz-buttons-container {
+    width: 75%;
+  }
+
+  .Quiz-section-answer-container {
+    margin: 0 10%;
+  }
+
 }
 
 @media only screen and (max-width: 650px) {
   .Home-card-container {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .Country-section-outer {
@@ -305,6 +434,36 @@
     display: block;
   }
 
+  .Quiz-section-inner-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr 2fr;
+  }
+  
+  .Quiz-section-inner-middle {
+    grid-area: 2 / 1 / span 1 / span 1;
+    flex-direction: column;
+    row-gap: 3rem;
+  }
+
+  .Quiz-section-inner-bottom {
+    grid-area: 3 / 1 / span 1 / span 1;
+    row-gap: 0.1rem;
+  }
+
+  .Quiz-buttons-container {
+    display: flex;
+    width: 60%;
+    height: fit-content;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-bottom: 10%;
+  }
+
+  .Quiz-buttons-container button {
+    width: 100%;
+    margin: 3% 0;
+  }
+
 }
 
 @media only screen and (max-width: 400px) {
@@ -314,6 +473,10 @@
 
   h1 {
     font-size: 1.5rem;
+  }
+
+  .Home-quiz-container {
+    justify-content: flex-start;
   }
 
   .Form-container {

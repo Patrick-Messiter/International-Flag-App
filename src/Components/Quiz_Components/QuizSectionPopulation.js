@@ -46,11 +46,19 @@ function PopulationQuestion (props) {
 
     // Both state handling functions are both handled on the onclick event handler
     return (
-        <div>
-            <h2>Which Country has the higher population?</h2>
-            <button onClick = {() => {setUserSelection(props.countryOne.name.common); findHigherPopulation()}}>{props.countryOne.name.common}</button>
-            <button onClick = {() => {setUserSelection(props.countryTwo.name.common); findHigherPopulation()}}>{props.countryTwo.name.common}</button>
-        </div>
+        <>
+            <h3>Which Country has the higher population?</h3>
+            <div className='Quiz-buttons-container'>
+                <button onClick = {() => {setUserSelection(props.countryOne.name.common); findHigherPopulation()}}
+                className={props.toggleDarkMode ? "DarkMinor" : "LightMinor"}>
+                    {props.countryOne.name.common}
+                </button>
+                <button onClick = {() => {setUserSelection(props.countryTwo.name.common); findHigherPopulation()}}
+                className={props.toggleDarkMode ? "DarkMinor" : "LightMinor"}>
+                    {props.countryTwo.name.common}
+                </button>
+            </div>
+        </>
     )
 }
 
