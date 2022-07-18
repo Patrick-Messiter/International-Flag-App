@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "9ae19cca489b9c71a2ad",
-    "url": "/International-Flag-App/static/css/main.84d73e7b.chunk.css"
+    "revision": "a5f5a86553608ec03d20",
+    "url": "/International-Flag-App/static/css/main.0e2e8dfd.chunk.css"
   },
   {
-    "revision": "9ae19cca489b9c71a2ad",
-    "url": "/International-Flag-App/static/js/main.9ae19cca.chunk.js"
+    "revision": "a5f5a86553608ec03d20",
+    "url": "/International-Flag-App/static/js/main.a5f5a865.chunk.js"
   },
   {
     "revision": "3e178a939889fa6e80bf",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/International-Flag-App/static/js/runtime~main.954fdbe4.js"
   },
   {
-    "revision": "4a71614f13a2b690ccc766cb9327bbeb",
+    "revision": "3b219ee17fd01e553501f4fe9df6a063",
     "url": "/International-Flag-App/index.html"
   }
 ];
