@@ -2,7 +2,7 @@
 
 This project was firstly intended as a replication of Frontend Mentors REST Countries API Challenge (https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 
-The challenge sources an API from (https://restcountries.com/)
+The API source for this project is REST Countries API (https://restcountries.com/)
 
 I decided to implement my own components in addition to the challenge, including a quiz component.
 
